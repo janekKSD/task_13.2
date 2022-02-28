@@ -23,7 +23,6 @@ class Books:
             rows_all = cur.fetchall()
             return rows_all
             
-
     def get(self, id):
         with sqlite3.connect(self.db_file) as conn:
             conn.row_factory = sqlite3.Row
@@ -73,5 +72,3 @@ class Books:
             print(form_values)
 
 books = Books()
-
-
