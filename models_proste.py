@@ -15,20 +15,21 @@ class Books:
                     );
                 """)
         self.conn.row_factory = sqlite3.Row
-        self.cur = self.conn.cursor()
-
+        
     def all(self):
+        self.cur = self.conn.cursor()
         self.cur.execute(f"SELECT * FROM books")
         rows_all = self.cur.fetchall()
         return rows_all
 
-
     def get(self, id):
+        self.cur = self.conn.cursor()
         self.cur.execute(f"SELECT * FROM books WHERE id=?", (id,))
         rows = self.cur.fetchone()
         return rows
 
     def create(self, data):
+        self.cur = self.conn.cursor()
         if 'csrf_token' in data:
             data.pop('csrf_token')
         sql = '''INSERT INTO books(title, author, year)
@@ -39,6 +40,7 @@ class Books:
         return self.cur.lastrowid
 
     def update(self, id, data):
+        self.cur = self.conn.cursor()
         if 'csrf_token' in data:
             data.pop('csrf_token')
         parameters = [f"{k} = ?" for k in data]
@@ -65,8 +67,8 @@ books = Books()
 #wywołania
 
 #print(books.all())
-#k = {'title':'ttttt', 'author':'ssssssssss', 'year':123}
-#books.create(k)
+k = {'title':'ttttt', 'author':'ssssssssss', 'year':123}
+books.create(k)
 #print(f' get: {books.get(1)}')
 #u = {'title':'aaaaaaa', 'author':'3333333333', 'year':234234}
 #books.update(27, u)

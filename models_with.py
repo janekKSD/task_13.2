@@ -4,7 +4,8 @@ from sqlite3 import Error
 class Books:
     def __init__(self):
         self.db_file = "books_list.db"
-        with sqlite3.connect(self.db_file) as self.conn:
+        with sqlite3.connect(self.db_file) as conn:
+            self.conn = conn
             self.conn.execute("""
                 -- books table
                 CREATE TABLE IF NOT EXISTS books (

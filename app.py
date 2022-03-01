@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for
 
 from forms import BookForm
-from models import books #działa wszystko
-#from models_proste import books #działa przez RUN nie działa WWW
+#from models import books #działa wszystko
+from models_proste import books #działa przez RUN nie działa WWW
 #from models_with import books #działa przez RUN nie działa WWW
 
 app = Flask(__name__)
